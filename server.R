@@ -224,7 +224,7 @@ shinyServer(function(input, output,session) {
     
     ReturnDf=AccDB %>%
       filter(Segment=="Friends") %>%
-      filter(str_detect(BookingText,'laptop')) %>%
+      filter(str_detect(BookingText,'Ravi loan')) %>%
       summarise(Amt=sum(Amount))
    
     gauge(ReturnDf$Amt, min = 0, max = 569, symbol = 'EUR',label = paste("Laptop Cyberport"), gaugeSectors(
