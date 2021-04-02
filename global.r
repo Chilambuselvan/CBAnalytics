@@ -17,11 +17,18 @@ suppressMessages(library(stringr))
 suppressMessages(library(fuzzyjoin))
 suppressMessages(library(tidyverse))
 suppressMessages(library(flexdashboard))
-
-
-if (dir.exists("D:/STUDIES/01_DataAnalytics/CBAnalytics/Data"))
+Sys.setlocale("LC_TIME", "C")
+tfpath="D:/STUDIES/01_DataAnalytics/CBAnalytics/Data"
+if (dir.exists(tfpath))
 {
-  setwd("D:/STUDIES/01_DataAnalytics/CBAnalytics/Data")
+  setwd(tfpath)
+  fpath=tfpath
+}
+tfpath="/Users/Chimbu/Desktop/Work/Personal/DataAnalytics/CBAnalytics/Data"
+if (dir.exists(tfpath))
+{
+  setwd(tfpath)
+  fpath=tfpath
 }
 
 if (!exists("AccDB"))
@@ -29,7 +36,7 @@ if (!exists("AccDB"))
   f <- list(family = "Courier New, monospace",size = 18,color = "#7f7f7f")
   KeywordMapping = read.xlsx("KeywordMapping.xlsx",sheet = 1,startRow = 1, colNames = TRUE,detectDates = TRUE,rowNames = FALSE)
   CitiAccDB = read.xlsx("Citibank.xlsx",sheet = 1,startRow = 1, colNames = TRUE,detectDates = TRUE,rowNames = FALSE)
-  files <- list.files(path ="D:/STUDIES/01_DataAnalytics/CBAnalytics/Data",pattern = ".CSV")
+  files <- list.files(path =fpath,pattern = ".CSV")
   temp <- lapply(files, fread,sep=",",na.strings="")
   AccDB <- rbindlist(temp)
   #Column based duplicate remove because special CHARS in booking text makes difference
@@ -49,9 +56,7 @@ if (!exists("AccDB"))
   CitiAccDB$Deposits=as.numeric(CitiAccDB$Deposits)
   AccDB$TransactionDate=as.Date(AccDB$TransactionDate, "%d.%m.%Y")
   AccDB$ValueDate=as.Date(AccDB$ValueDate, "%d.%m.%Y")
-  
   CitiAccDB$Date= parse_date_time(x = CitiAccDB$Date,orders = c("Y-m-d","d/m/Y"),locale = "eng")
-  
   tempDate=dmy(AccDB$TransactionDate)
   AccDB$TransactionYear= year(AccDB$TransactionDate)
   AccDB$TransactionMonth= month(AccDB$TransactionDate,label = TRUE)
@@ -62,15 +67,12 @@ if (!exists("AccDB"))
   #
   AccDB$Category=ifelse(AccDB$Amount < 0,'Expense','Income')
   CitiAccDB$Category=ifelse(CitiAccDB$Withdrawals > 0,"Expense","Income")
-  
   AccDB$Amount=abs(AccDB$Amount)
-  
   AccDB=AccDB %>% fuzzy_inner_join(KeywordMapping, by = c("BookingText" = "SearchKeyword"), match_fun = str_detect)
   # 
   # Exceptions
   # Reporting ticket amount
   AccDB$Company=ifelse(AccDB$Amount==1490.55,'Lufthansa',AccDB$Company)
-  
   #Estimate Inputs
   ValTransactionYear=unique(AccDB$TransactionYear[!is.na(AccDB$TransactionYear)])
   ValTransactionMonth=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
