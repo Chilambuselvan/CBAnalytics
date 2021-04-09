@@ -125,6 +125,10 @@ shinyUI(
                 fluidRow(
                   box(title = "Missing Data Summary",width=12,status = "warning", solidHeader = TRUE,collapsible = FALSE,collapsed = FALSE,
                       dataTableOutput("tabmissingSummary"))
+                ),
+                fluidRow(
+                  box(title = "Missing Data Details - Segment",width=12,status = "warning", solidHeader = TRUE,collapsible = FALSE,collapsed = FALSE,
+                      dataTableOutput("tabmissingSummaryDetails"))
                 )
                )
         

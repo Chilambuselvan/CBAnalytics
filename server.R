@@ -255,5 +255,14 @@ shinyServer(function(input, output,session) {
     
     datatable(freq.table.miss)
   })
+  ##
+  output$tabmissingSummaryDetails = renderDataTable({
+    Dtd=reactdataAccountDB()
+    Dtd=Dtd%>% 
+      filter(is.na(Segment))
+    #Dt$`Winning.Competitor's.Bid` = paste(Dt$`Winning.Competitor's.Bid`, Dt$`Winning.Competitor's.Bid.Currency`, sep="")
+    #columns=c("Region","Load","Speed","cnt")
+    datatable(Dtd,filter="bottom",class = 'cell-border stripe',rownames = FALSE)
+  })
   
 })
