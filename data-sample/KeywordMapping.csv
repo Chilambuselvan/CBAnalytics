@@ -1,0 +1,21 @@
+SearchKeyword,Company,Segment,Priority,IsStandard
+sunrise housing,Sunrise Housing,Housing,0,TRUE
+metro transit,Metro Transit,Transport,0,TRUE
+fibernet,FiberNet,Utilities,0,TRUE
+city power,City Power,Utilities,0,TRUE
+little stars kita,Little Stars Kita,Education,0,TRUE
+transfer to savings,Savings Account,Savings,0,TRUE
+acme gmbh,Acme GmbH,Salary,0,FALSE
+freshmart,FreshMart,Groceries,0,FALSE
+bio corner,Bio Corner,Groceries,0,FALSE
+cafe sonne,Cafe Sonne,Dining,0,FALSE
+pizza napoli,Pizza Napoli,Dining,0,FALSE
+city pharmacy,City Pharmacy,Health,0,FALSE
+klarna,Klarna,Shopping,0,FALSE
+klarna ab wish,Wish,Shopping,0,FALSE
+bookworm,Bookworm Books,Hobbies,0,FALSE
+skyair,SkyAir,Travel,0,FALSE
+booking.com,Booking.com,Travel,0,FALSE
+finanzamt,Finanzamt,Tax,0,FALSE
+techstore,TechStore,Electronics,0,FALSE
+loan repayment from alex,Alex,Friends,0,FALSE

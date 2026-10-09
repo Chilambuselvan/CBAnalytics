@@ -1,0 +1,17 @@
+# Real financial data never goes into git. Keep it in Data/ (or anywhere)
+# and point CB_DATA_DIR at it. Only the fake data in data-sample/ is committed.
+Data/
+*.csv
+*.CSV
+*.xlsx
+*.xls
+config.yml
+!data-sample/
+!data-sample/**
+
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Renviron
+rsconnect/

@@ -1,0 +1,24 @@
+# Personal settings. Copy this file into your own data folder (CB_DATA_DIR)
+# and edit it there; that copy is never committed.
+
+app_title: "CB Analytics"
+currency: EUR
+# Encoding of the bank CSV exports, e.g. "windows-1252" if umlauts look broken.
+csv_encoding: UTF-8
+
+# Fixed monthly costs, by Company name. Only used when the keyword mapping
+# has no IsStandard column (the sample mapping has one, so this is empty).
+standard_expenses: []
+
+# One-off corrections for transactions the keywords get wrong.
+overrides:
+  - amount: 899.90
+    company: SkyAir
+    segment: Travel
+
+# Progress gauges, e.g. money lent that is being paid back.
+trackers:
+  - name: Laptop loan to Alex
+    pattern: "loan repayment from alex"
+    segment: Friends
+    target: 600
